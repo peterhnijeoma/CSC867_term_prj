@@ -1,27 +1,31 @@
-const db = require('../db');
+const db = require('../../db');
 
 const login = function(user,password){
-    //console.log(user,password)
-    db.any(`SELECT user_id FROM uno_user WHERE user_name = 'Peter' and allow_word = 'playuno'`)
+    let data = [];
+    console.log(user,password)
+    db.any(`SELECT user_id FROM uno_user WHERE user_name = '${user}' and allow_word = '${password}'`)
       .then( results => {
-          //response.json( results );
-          console.log(results);
-          return true;
+          console.log("in controller.authenticate.login.result is: ",  results);
+          data = results;
+          console.log("data is:", data, "data length is: ", data.length);
+          return data;
       })
       .catch( error => {
+          console.log("in controller.authenticate.login - error occured - see below");
           console.log( error );
-          //response.json({ error });
-          return false;
+          //return false;
       })
-      
     // if(user==="admin" && password==="admin")
-    // {
-    //     return true;
-    // }
-    // else
-    // {
-    //     return false;
-    // }
+    if (data.length > 0)
+    {
+        console.log("all is well - will return true");
+        return true;
+    }
+    else
+    {
+        console.log("something is wrong - will return false");
+        return false;
+    }
 }
 
 module.exports=login;

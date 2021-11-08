@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "development")
 //console.log("Afeter" + process.env.THING);
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+//const usersRouter = require('./routes/users');
 const testRouter = require('./routes/tests');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
@@ -31,7 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 app.use('/tests', testRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);

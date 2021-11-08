@@ -18,11 +18,13 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     const username = req.body.username;
     let loginResult = login(username, req.body.password);
-    if (loginResult)
+    if (loginResult.length > 0)
     {
+        console.log("in routes.login data returned lsn gt 0");
         res.render('lobby', {username: username});
     }
     else {
+        console.log("in routes.login; data returned len lt 0");
         res.render('login', {error: true});
     }
 });
